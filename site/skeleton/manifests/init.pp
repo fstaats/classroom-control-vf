@@ -1,12 +1,12 @@
 class skeleton {
   file { '/etc/skel':
-    ensure => 'directory',
+    ensure  => 'directory',
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
   }
   
-  file { '/etc/skel/.bashrc'
+  file { '/etc/skel/.bashrc':
     ensure  => 'file',
     owner   => 'root',
     group   => 'root',
