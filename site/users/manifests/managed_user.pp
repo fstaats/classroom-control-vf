@@ -12,10 +12,11 @@ define users::managed_user (
         group   => $gid,
         mode    => '0644',
     }
-    if $home == undef {
-        $home = "/home/${username}"
+    $home_dir = $home ? {
+        undef   => "/home/${username}"
+        defautl => $home
     }
-    file { [$home, "${home}/.ssh"]:
+    file { [$home_dir, "${home_dir}/.ssh"]:
         ensure => directory
     }
     group { $gid:
