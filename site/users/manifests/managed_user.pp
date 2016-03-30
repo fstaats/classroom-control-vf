@@ -8,14 +8,29 @@ define users::managed_user (
     $shell            = undef,
     $uid              = undef,
  ) {
-  user { $title:
-    ensure           => 'present',
-    gid              => $gid,
-    home             => $home,
-    password         => $password,
-    password_max_age => $password_max_age,
-    password_min_age => $password_min_age,
-    shell            => $shell,
-    uid              => $uid
-  }
+    File {
+        ensure  => file,
+        owner   => $uid,
+        group   => $gid,
+        mode    => '0644',
+    }
+    if $gid {
+        group { $gid:
+            ensure => 'present',
+        }
+    }
+    user { $title:
+        ensure           => 'present',
+        gid              => $gid,
+        home             => $home,
+        password         => $password,
+        password_max_age => $password_max_age,
+        password_min_age => $password_min_age,
+        shell            => $shell,
+        uid              => $uid
+        
+    }
+    file { $home:
+        ensure => 'present'
+    }
 }
