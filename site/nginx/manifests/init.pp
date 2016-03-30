@@ -1,10 +1,13 @@
 class nginx {
   $conf_d_dir = '/etc/nginx/conf.d'
   $default_conf = "${conf_d_dir}/default.conf"
+  $default_conf_source = "puppet:///modules/${module_name}/default.conf"
   $nginx_dir = '/etc/nginx'
   $nginx_conf = "${nginx_conf_dir}/nginx.conf"
+  $nginx_conf_source = "puppet:///modules/${module_name}/nginx.conf"
   $www_dir = '/var/www'
   $index_html = "${www_dir}/index.html"
+  $index_html_conf = "puppet:///modules/${module_name}/index.html"
   
   File {
     owner   => 'root',
@@ -30,19 +33,19 @@ class nginx {
   
   file { $nginx_conf:
     ensure  => file,
-    source  => 'puppet:///modules/nginx/nginx.conf',
+    source  => $nginx_conf_source,
     require => Package['nginx'],
   }
   
   file { $default_conf:
     ensure  => file,
-    source  => 'puppet:///modules/nginx/default.conf',
+    source  => $default_conf_source,
     require => Package['nginx'],
   }
   
   file { $index_html:
     ensure  => file,
-    source  => 'puppet:///modules/nginx/index.html',
+    source  => $index_html_source,
     require => Package['nginx'],
   }
   
