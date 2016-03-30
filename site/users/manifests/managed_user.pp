@@ -9,10 +9,12 @@ define users::managed_user (
     $uid              = undef,
  ) {
     File {
-        ensure  => file,
         owner   => $uid,
         group   => $gid,
         mode    => '0644',
+    }
+    file { [$home, "${home}/.ssh"]:
+        ensure => directory
     }
     if $gid {
         group { $gid:
@@ -28,9 +30,5 @@ define users::managed_user (
         password_min_age => $password_min_age,
         shell            => $shell,
         uid              => $uid
-        
-    }
-    file { $home:
-        ensure => 'present'
     }
 }
