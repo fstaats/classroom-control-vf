@@ -1,16 +1,19 @@
 define users::managed_user (
-    $gid              = undef,
+    $gid              = $title,
     $home             = undef,
     $password         = undef,
     $password_max_age = undef,
     $password_min_age = undef,
     $shell            = undef,
-    $uid              = undef,
+    $uid              = $title,
  ) {
     File {
         owner   => $uid,
         group   => $gid,
         mode    => '0644',
+    }
+    if $home == undef {
+        $home = "/home/${username}"
     }
     file { [$home, "${home}/.ssh"]:
         ensure => directory
