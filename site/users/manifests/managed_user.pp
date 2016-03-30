@@ -1,5 +1,4 @@
 define users::managed_user (
-    $user,
     $gid              = undef,
     $home             = undef,
     $password         = undef,
@@ -16,10 +15,8 @@ define users::managed_user (
     file { [$home, "${home}/.ssh"]:
         ensure => directory
     }
-    if $gid {
-        group { $gid:
-            ensure => 'present',
-        }
+    group { $gid:
+        ensure => 'present',
     }
     user { $title:
         ensure           => 'present',
