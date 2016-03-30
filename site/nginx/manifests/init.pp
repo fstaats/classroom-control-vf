@@ -13,10 +13,21 @@ class nginx {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
+    require => Package['nginx']
+    notify  => Service['nginx']
   }
 
   package { 'nginx':
     ensure => present,
+  }
+  
+  service { 'nginx':
+    ensure    => running,
+    enable    => true,
+    subscribe => [
+      File[$nginx_conf],
+      File[$default_conf],
+    ]
   }
   
   file { $www_dir:
@@ -34,28 +45,15 @@ class nginx {
   file { $nginx_conf:
     ensure  => file,
     source  => $nginx_conf_source,
-    require => Package['nginx'],
   }
   
   file { $default_conf:
     ensure  => file,
     source  => $default_conf_source,
-    require => Package['nginx'],
   }
   
   file { $index_html:
     ensure  => file,
     source  => $index_html_source,
-    require => Package['nginx'],
   }
-  
-  service { 'nginx':
-    ensure    => running,
-    enable    => true,
-    subscribe => [
-      File[$nginx_conf],
-      File[$default_conf],
-    ]
-  }
-
 }
