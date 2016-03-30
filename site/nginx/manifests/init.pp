@@ -7,7 +7,7 @@ class nginx {
   $nginx_conf_source = "puppet:///modules/${module_name}/nginx.conf"
   $www_dir = '/var/www'
   $index_html = "${www_dir}/index.html"
-  $index_html_conf = "puppet:///modules/${module_name}/index.html"
+  $index_html_source = "puppet:///modules/${module_name}/index.html"
   
   File {
     owner   => 'root',
