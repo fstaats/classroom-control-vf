@@ -51,7 +51,7 @@ class nginx {
     enable    => true,
     subscribe => [
       File[$nginx_conf],
-      File[$dfault_conf],
+      File[$default_conf],
     ]
   }
 
