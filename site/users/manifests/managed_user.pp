@@ -13,8 +13,8 @@ define users::managed_user (
         mode    => '0644',
     }
     $home_dir = $home ? {
-        undef   => "/home/${username}"
-        default => $home
+        undef   => "/home/${username}",
+        default => $home,
     }
     file { [$home_dir, "${home_dir}/.ssh"]:
         ensure => directory
