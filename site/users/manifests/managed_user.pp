@@ -14,7 +14,7 @@ define users::managed_user (
     }
     $home_dir = $home ? {
         undef   => "/home/${username}"
-        defautl => $home
+        default => $home
     }
     file { [$home_dir, "${home_dir}/.ssh"]:
         ensure => directory
