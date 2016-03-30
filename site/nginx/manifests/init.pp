@@ -1,53 +1,47 @@
 class nginx {
+  $conf_d_dir = '/etc/nginx/conf.d'
+  $default_conf = "${conf_d_dir}/default.conf"
+  $nginx_dir = '/etc/nginx'
+  $nginx_conf = "${nginx_conf_dir}/nginx.conf"
+  $www_dir = '/var/www'
+  $index_html = "${www_dir}/index.html"
+  
+  File {
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
 
   package { 'nginx':
     ensure => present,
   }
   
-  file { '/var/www':
+  file { $www_dir:
     ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
   }
   
-  file { '/etc/nginx':
+  file { $nginx_dir:
     ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
   }
   
-  file { '/etc/nginx/conf.d':
+  file { $conf_d_dir:
     ensure  => 'directory',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
   }
   
-  file { '/etc/nginx/nginx.conf':
+  file { $nginx_conf:
     ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
     source  => 'puppet:///modules/nginx/nginx.conf',
     require => Package['nginx'],
   }
   
-  file { '/etc/nginx/conf.d/default.conf':
+  file { $default_conf:
     ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
     source  => 'puppet:///modules/nginx/default.conf',
     require => Package['nginx'],
   }
   
-  file { '/var/www/index.html':
+  file { $index_html:
     ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
     source  => 'puppet:///modules/nginx/index.html',
     require => Package['nginx'],
   }
@@ -56,8 +50,8 @@ class nginx {
     ensure    => running,
     enable    => true,
     subscribe => [
-      File['/etc/nginx/nginx.conf'],
-      File['/etc/nginx/conf.d/default.conf'],
+      File[$nginx_conf],
+      File[$dfault_conf],
     ]
   }
 
