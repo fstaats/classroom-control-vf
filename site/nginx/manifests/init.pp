@@ -13,8 +13,8 @@ class nginx {
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    require => Package['nginx']
-    notify  => Service['nginx']
+    require => Package['nginx'],
+    notify  => Service['nginx'],
   }
 
   package { 'nginx':
