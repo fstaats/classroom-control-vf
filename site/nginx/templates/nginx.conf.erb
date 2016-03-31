@@ -35,8 +35,8 @@ http {
 
     #gzip  on;
 
-    # Load config files from the <%= @config_d_dir %> directory
+    # Load config files from the <%= @conf_d_dir %> directory
     # The default server is in conf.d/default.conf
-    include <%= @config_d_dir %>/*.conf;
+    include <%= @conf_d_dir %>/*.conf;
 
 }
