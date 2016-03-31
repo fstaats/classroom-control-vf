@@ -1,11 +1,13 @@
-class nginx {
+class nginx(
+  $root = '/var/www'
+) {
   $package_name ='nginx'
   $file_owner   = 'root'
   $file_group   = 'root'
   $config_dir   = '/etc/nginx'
   $logs_dir     = '/var/log/nginx'
   $service_user = 'nginx'
-  $www_dir      = '/var/www'
+  $www_dir      = $root
   
   $conf_d_dir = '/etc/nginx/conf.d'
   $default_conf = "${conf_d_dir}/default.conf"
