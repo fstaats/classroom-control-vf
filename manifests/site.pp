@@ -60,9 +60,9 @@ node default {
   include memcached
   
   #include nginx
-  class { 'nginx':
-    root => '/var/www',
-  }
+  #class { 'nginx':
+  #  root => '/var/www',
+  #}
   
   if $::is_virtual {
     notify { "This is a ${capitalize($::virtual)} virtual machine": }
