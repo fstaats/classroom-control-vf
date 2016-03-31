@@ -24,7 +24,5 @@ class nginx::params {
       $logs_dir     = 'C:/ProgramData/log/nginx'
       $service_user = 'nobody'
     }
-    default: {
-      fail("Module ${module_name} is not supported on ${::osfamily}")
-    }
+  }
 }
