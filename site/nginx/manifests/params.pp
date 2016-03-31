@@ -1,5 +1,5 @@
 class nginx::params {
-  if $::osfamily {
+  case $::osfamily {
     'RedHat': {
       $package_name = 'nginx'
       $file_owner   = 'root'
