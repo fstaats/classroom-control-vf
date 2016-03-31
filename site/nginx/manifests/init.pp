@@ -1,13 +1,21 @@
 class nginx {
+  $package_name ='nginx'
+  $file_owner   = 'root'
+  $file_group   = 'root'
+  $config_dir   = '/etc/nginx'
+  $logs_dir     = '/var/log/nginx'
+  $service_user = 'nginx'
+  $www_dir      = '/var/www'
+  
   $conf_d_dir = '/etc/nginx/conf.d'
   $default_conf = "${conf_d_dir}/default.conf"
   $default_conf_source = "puppet:///modules/${module_name}/default.conf"
   $nginx_dir = '/etc/nginx'
   $nginx_conf = "${nginx_conf_dir}/nginx.conf"
   $nginx_conf_source = "puppet:///modules/${module_name}/nginx.conf"
-  $www_dir = '/var/www'
   $index_html = "${www_dir}/index.html"
   $index_html_source = "puppet:///modules/${module_name}/index.html"
+
   
   File {
     owner   => 'root',
