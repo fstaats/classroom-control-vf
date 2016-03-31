@@ -59,7 +59,7 @@ node default {
   
   include memcached
   
-  #include nginx
+  include nginx
   
   if $::is_virtual {
     notify { "This is a ${capitalize($::virtual)} virtual machine": }
