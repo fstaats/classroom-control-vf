@@ -1,13 +1,13 @@
 class nginx(
   $root = '/var/www'
-) {
-  $package_name ='nginx'
-  $file_owner   = 'root'
-  $file_group   = 'root'
-  $config_dir   = '/etc/nginx'
-  $logs_dir     = '/var/log/nginx'
-  $service_user = 'nginx'
-  $www_dir      = $root
+) inherits nginx::params {
+  $package_name = $nginx::params::package_name
+  $file_owner   = $nginx::params::file_owner
+  $file_group   = $nginx::params::file_group
+  $config_dir   = $nginx::params::config_dir
+  $logs_dir     = $nginx::params::logs_dir
+  $service_user = $nginx::params::service_user
+  $www_dir      = $nginx::params::www_dir
   
   $conf_d_dir = '/etc/nginx/conf.d'
   $default_conf = "${conf_d_dir}/default.conf"
