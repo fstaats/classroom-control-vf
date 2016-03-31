@@ -59,11 +59,13 @@ node default {
   
   include memcached
   
-  include nginx
+  #include nginx
   
   if $::is_virtual {
     notify { "This is a ${capitalize($::virtual)} virtual machine": }
   }
   
   #include users::admins
+  $message = hiera('message')
+  notify { "The hiera message is : ${message}": }
 }
