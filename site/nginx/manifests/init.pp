@@ -9,10 +9,10 @@ class nginx {
   
   $conf_d_dir = '/etc/nginx/conf.d'
   $default_conf = "${conf_d_dir}/default.conf"
-  $default_conf_source = "puppet:///modules/${module_name}/default.conf"
+  $default_conf_source = "puppet:///modules/${module_name}/default.conf.erb"
   $nginx_dir = '/etc/nginx'
   $nginx_conf = "${nginx_conf_dir}/nginx.conf"
-  $nginx_conf_source = "puppet:///modules/${module_name}/nginx.conf"
+  $nginx_conf_source = "puppet:///modules/${module_name}/nginx.conf.erb"
   $index_html = "${www_dir}/index.html"
   $index_html_source = "puppet:///modules/${module_name}/index.html"
 
@@ -48,12 +48,12 @@ class nginx {
   
   file { $nginx_conf:
     ensure  => file,
-    source  => $nginx_conf_source,
+    source  => template($nginx_conf_source),
   }
   
   file { $default_conf:
     ensure  => file,
-    source  => $default_conf_source,
+    source  => template($default_conf_source),
   }
   
   file { $index_html:
