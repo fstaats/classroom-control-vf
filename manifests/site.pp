@@ -65,5 +65,5 @@ node default {
     notify { "This is a ${capitalize($::virtual)} virtual machine": }
   }
   
-  include users::admins
+  #include users::admins
 }
