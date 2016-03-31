@@ -7,6 +7,7 @@ class nginx::params {
       $config_dir   = '/etc/nginx'
       $logs_dir     = '/var/log/nginx'
       $service_user = 'nginx'
+      $www_dir      = '/var/www'
     }
     'Debian': {
       $package_name = 'nginx'
@@ -15,6 +16,7 @@ class nginx::params {
       $config_dir   = '/etc/nginx'
       $logs_dir     = '/var/log/nginx'
       $service_user = 'www-data'
+      $www_dir      = '/var/www'
     }
     'Windows': {
       $package_name ='nginx-service'
@@ -23,6 +25,7 @@ class nginx::params {
       $config_dir   = 'C:/ProgramData/nginx'
       $logs_dir     = 'C:/ProgramData/log/nginx'
       $service_user = 'nobody'
+      $www_dir      = 'C:/ProgramData/nginx/html'
     }
   }
 }
