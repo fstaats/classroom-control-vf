@@ -13,7 +13,7 @@ class nginx(
   $default_conf = "${conf_d_dir}/default.conf"
   $default_conf_template = "${module_name}/default.conf.erb"
   $nginx_dir = '/etc/nginx'
-  $nginx_conf = "${nginx_conf_dir}/nginx.conf"
+  $nginx_conf = "${nginx_dir}/nginx.conf"
   $nginx_conf_template = "${module_name}/nginx.conf.erb"
   $index_html = "${www_dir}/index.html"
   $index_html_source = "puppet:///modules/${module_name}/index.html"
